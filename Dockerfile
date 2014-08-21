@@ -19,15 +19,15 @@ CMD ["/sbin/my_init"]
 
 # ...put your own build instructions here...
 
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # add oracle java repo
 RUN apt-get install -y python-software-properties
 RUN add-apt-repository -y ppa:webupd8team/java
 
-RUN apt-get clean update
+RUN apt-get update
 
-# Replace '8' with 6,7,8 
+# Installs java -- '8' may be replaced with 6,7,8 
 RUN apt-get install -y oracle-java8-installer
+
+# Clean up apt when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
